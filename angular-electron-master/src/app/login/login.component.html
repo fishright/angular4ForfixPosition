@@ -4,17 +4,15 @@
   <!--轮播图-->
   <div class="swiper-container swiper-banner">
     <div class="swiper-wrapper">
-
       <div class="swiper-slide swiper-item-img" *ngFor="let imge of imgs">
-        <img class="swiper-img"  [ngStyle]="{'background-image': imge }">
+        <img class="swiper-img" src="{{imge}}">
       </div>
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
   </div>
-
   <div class="massage-flex-div">
-    <img class="logo-56" src="{{imgFzu}}">
+    <!--<img class="logo-56" src="{{imgFzu}}">-->
     <div class="swiper-container swiper-message">
       <div class="swiper-wrapper">
         <div class="swiper-slide swiper-no-swiping swiper-item-text" *ngFor="let arr of messageArray">{{arr}}</div>
@@ -48,4 +46,6 @@
       </form>
     </div>
   </div>
+
+
 </div>

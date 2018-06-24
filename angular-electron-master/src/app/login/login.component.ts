@@ -11,6 +11,10 @@ import {BootstrapModalModule, DialogService} from 'ngx-bootstrap-modal';
 import {DetailComponent} from '../detail/detail.component';
 import {MessageComponent} from '../message/message.component';
 import {HttpParams} from '@angular/common/http';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/observable/fromEvent';
+
 
 @Component({
   selector: 'app-login',
@@ -27,14 +31,18 @@ export class LoginComponent implements OnInit {
   public inPW:string;
   public data:Observable<string>;
   public user:User;
-  // public imgs:Array<string>=[
-  //      "/assets/img/backgrounds/1.jpg","/assets/img/backgrounds/2.jpg"
-  // ]
-  imgs = ["url(/assets/img/backgrounds/1.jpg)","url(/assets/img/backgrounds/2.jpg)"];
+  public imgs:Array<string>=[
+       "assets/img/backgrounds/fzu1.png","assets/img/backgrounds/fzu2.png","assets/img/backgrounds/fzu3.png",
+    "assets/img/backgrounds/fzu4.png","assets/img/backgrounds/fzu5.png"
+  ]
+  // imgs = ["url(/assets/img/backgrounds/fzu1.png)","url(/assets/img/backgrounds/fzu2.png)",
+  //   "url(/assets/img/backgrounds/fzu3.png)","url(/assets/img/backgrounds/fzu4.png)",
+  //   "url(/assets/img/backgrounds/fzu5.png)"
+  // ];
 
   public imgFzu:string="/assets/img/fzu.jpg";
   public messageArray:Array<string>=[
-    "福州大学欢迎您","欢迎报考数学与计算机学院","有大神池老标老师"
+    "福州大学  欢迎您","欢迎报考  数学与计算机学院","大神  池老标老师"
   ]
 
   // public imgs = ["url(/assets/img/backgrounds/1.jpg)","url(/assets/img/backgrounds/2.jpg)"];
@@ -51,7 +59,6 @@ export class LoginComponent implements OnInit {
     this.pwFilter.valueChanges
       .debounceTime(500)
       .subscribe(value=>this.inPW=value);
-
   }
   login(){
     if(this.inID==''||this.inPW==''){
