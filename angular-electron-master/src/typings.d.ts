@@ -5,6 +5,7 @@ interface NodeModule {
 }
 
 declare var window: Window;
+declare  var Swiper:any;
 interface Window {
   process: any;
   require: any;

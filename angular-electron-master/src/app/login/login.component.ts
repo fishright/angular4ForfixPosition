@@ -17,6 +17,7 @@ import {HttpParams} from '@angular/common/http';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
   public users:Array<User>;
@@ -26,6 +27,19 @@ export class LoginComponent implements OnInit {
   public inPW:string;
   public data:Observable<string>;
   public user:User;
+  // public imgs:Array<string>=[
+  //      "/assets/img/backgrounds/1.jpg","/assets/img/backgrounds/2.jpg"
+  // ]
+  imgs = ["url(/assets/img/backgrounds/1.jpg)","url(/assets/img/backgrounds/2.jpg)"];
+
+  public imgFzu:string="/assets/img/fzu.jpg";
+  public messageArray:Array<string>=[
+    "福州大学欢迎您","欢迎报考数学与计算机学院","有大神池老标老师"
+  ]
+
+  // public imgs = ["url(/assets/img/backgrounds/1.jpg)","url(/assets/img/backgrounds/2.jpg)"];
+
+
 
   constructor(public router:Router,private userService:UserService,
               private storage:LocalStorageProvider,private loginService:LoginService,public dialogService: DialogService) { }
@@ -37,6 +51,7 @@ export class LoginComponent implements OnInit {
     this.pwFilter.valueChanges
       .debounceTime(500)
       .subscribe(value=>this.inPW=value);
+
   }
   login(){
     if(this.inID==''||this.inPW==''){
@@ -80,4 +95,33 @@ export class LoginComponent implements OnInit {
   showAlert() {
     this.dialogService.addDialog(DetailComponent, { title: 'Alert title!', message: 'Alert message!!!' });
   }
+
+  ngAfterViewInit(){
+    this.initView();
+  }
+  public initView(){
+
+    var swiper = new Swiper('.swiper-banner', {
+      pagination: '.swiper-pagination',
+      nextButton: '.swiper-button-next',
+      prevButton: '.swiper-button-prev',
+      paginationClickable: true,
+      spaceBetween: 30,
+      centeredSlides: true,
+      autoplay: 2500,
+      autoplayDisableOnInteraction: false,
+      loop: true,
+    });
+
+    var swiper1 = new Swiper('.swiper-message', {
+      pagination: '.swiper-pagination',
+      spaceBetween: 5,
+      centeredSlides: true,
+      autoplay: 3500,
+      autoplayDisableOnInteraction: false,
+      loop: true,
+      direction: 'vertical'
+    });
+  }
+
 }

@@ -26,13 +26,13 @@
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/admin-lte/dist/css/AdminLTE.min.css",
         "../node_modules/admin-lte/dist/css/skins/skin-blue.min.css",
-        "assets/theme/default/laydate.css",
+        "assets/theme/default/laydate.css"
       ],
       "scripts":[
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/admin-lte/dist/js/adminlte.js",
-        "assets/laydate.js",
+        "assets/laydate.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
