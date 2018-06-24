@@ -1,0 +1,128 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">创建课程签到表</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <form [formGroup]="formModel" class="form-horizo ntal">
+    <div class="box-body">
+      <div class="form-group" [class.has-error]="formModel.get('courseId').touched&&formModel.hasError('required',['courseId'])">
+        <label class="col-sm-3 control-label">可选课程</label>
+        <div class="col-sm-5">
+          <select class="form-control" formControlName="courseId">
+             <option [value]=""></option>
+             <option *ngFor="let course of courses" id="{{course.courseId}}" [value]="course.courseId">{{course.courseName}}</option>
+          </select>
+        </div>
+        <span class="help-block" [class.hidden]="formModel.get('courseId').untouched||!formModel.hasError('required',['courseId'])">
+              课程必选
+        </span>
+      </div>
+    </div>
+
+
+
+    <div class="box-body">
+      <div class="form-group" [class.has-error]="formModel.get('allowScale').touched&&formModel.hasError('required',['allowScale'])">
+        <label class="col-sm-3 control-label">允许签到范围</label>
+        <div class="col-sm-5">
+          <select class="form-control" formControlName="allowScale">
+            <option [value]=""></option>
+            <option [value]="10">10米</option>
+            <option [value]="15">15米</option>
+            <option [value]="20">20米</option>
+            <option [value]="25">25米</option>
+            <option [value]="30">30米</option>
+            <option [value]="35">35米</option>
+            <option [value]="40">40米</option>
+            <option [value]="45">45米</option>
+            <option [value]="50">50米</option>
+          </select>
+        </div>
+        <span class="help-block" [class.hidden]="formModel.get('allowScale').untouched||!formModel.hasError('required',['allowScale'])">
+              范围必选
+        </span>
+      </div>
+    </div>
+
+
+    <div class="box-body">
+      <div class="form-group" [class.has-error]="formModel.get('fixPosition').touched&&formModel.hasError('required',['fixPosition'])">
+        <label class="col-sm-3 control-label">定位</label>
+        <div class="col-sm-5">
+          <input type="text" formControlName="fixPosition" class="form-control"  placeholder="点击定位" readonly value="fixPosition" (click)="createPosition()">
+          <span class="help-block" [class.hidden]="formModel.get('fixPosition').untouched||!formModel.hasError('required',['fixPosition'])">
+            请点击定位按钮
+          </span>
+        </div>
+      </div>
+      <div #container [class.hidden]="isPro" id="conntainerBaidu" class="maoContainer" style="height:400px;width: 400px"></div>
+    </div>
+
+    <div formGroupName="arriveInfo" [class.has-error]="formModel.get('arriveInfo.earlyArrive').touched&&formModel.hasError('required',['arriveInfo.earlyArrive'])">
+      <div class="box-body">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">最早签到时间</label>
+          <div class="col-sm-5">
+            <input class="form-control" formControlName="earlyArrive" type="text" id="EarlyArrive" placeholder="设置签到时间">
+            <span class="help-block" [class.hidden]="formModel.get('arriveInfo.earlyArrive').untouched||!formModel.hasError('required',['arriveInfo.earlyArrive'])">
+           最早时间必填
+           </span>
+          </div>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">最迟签到时间</label>
+          <div class="col-sm-5">
+            <input class="form-control" type="text" formControlName="latelyArrive" id="LateLyArrive" placeholder="设置签到时间">
+            <span class="help-block" [class.hidden]="formModel.get('arriveInfo.latelyArrive').untouched||!formModel.hasError('required',['arriveInfo.latelyArrive'])">
+           最迟时间必填
+           </span>
+            <span [hidden]="formModel.get('arriveInfo.earlyArrive').untouched||formModel.get('arriveInfo.latelyArrive').untouched||(!formModel.hasError('earlyArrive',['arriveInfo']))" >
+            {{formModel.getError('earlyArrive',['arriveInfo'])?.description}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button  (click)="create()" [disabled]="formModel.invalid" type="button" class="btn btn-info pull-right">创建</button>
+    </div>
+  </form>
+</div>
+<div class="box box-info">
+   <div class="box-body">
+     <table class="table table-bordered">
+       <tr>
+         <th style="width: 10px">#</th>
+         <th>课程名称</th>
+         <th>开课老师</th>
+         <th>签到人数</th>
+         <th>最早签到时间</th>
+         <th>最迟签到时间</th>
+         <th>定位信息</th>
+         <th>移动端定位信息</th>
+         <th>状态</th>
+         <th>操作</th>
+       </tr>
+       <tr *ngFor="let arrive of arriveList; let i=index;">
+         <td>{{i+1}}</td>
+         <td>{{arrive.courseName}}</td>
+         <td>{{arrive.teacherName}}</td>
+         <td>{{arrive.arrivePeople}}</td>
+         <td>{{arrive.earlyArrive|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+         <td>{{arrive.latelyArrive|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+         <td>{{arrive.fixPosition}}</td>
+         <td>{{arrive.mobilefixPosition}}</td>
+         <td>{{arrive.status|fixCourseStatus}}</td>
+         <td>
+           <a class="btn btn-warning btn-xs" (click)="change(arrive.id)" ><span class="glyphicon glyphicon-pencil"></span>状态切换</a>
+         </td>
+       </tr>
+     </table>
+   </div>
+</div>

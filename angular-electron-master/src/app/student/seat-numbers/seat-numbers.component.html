@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="user-item-container">
+      <table class="table table-bordered">
+        <caption style="text-align: center;font-size: x-large">课程座位表</caption>
+        <thead>
+        <tr>
+          <th>第一组</th>
+          <th>第二组</th>
+          <th>第三组</th>
+          <th>第四组</th>
+          <th>第五组</th>
+          <th>第六组</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let student of students;let i=index">
+          <!--后台循环查找往页面添加数据-->
+          <td id="{{1+i}}" (click)="seatPosition(1+i)">{{1+i}}<br>点击签到</td>
+          <td id="{{11+i}}" (click)="seatPosition(11+i)">{{11+i}}<br>点击签到</td>
+          <td id="{{21+i}}" (click)="seatPosition(21+i)">{{21+i}}<br>点击签到</td>
+          <td id="{{31+i}}" (click)="seatPosition(31+i)">{{31+i}}<br>点击签到</td>
+          <td id="{{41+i}}" (click)="seatPosition(41+i)">{{41+i}}<br>点击签到</td>
+          <td id="{{51+i}}" (click)="seatPosition(51+i)">{{51+i}}<br>点击签到</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

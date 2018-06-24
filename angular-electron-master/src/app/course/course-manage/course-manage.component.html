@@ -1,0 +1,146 @@
+<div class="box" [class.hidden]="show">
+  <div class="box-header with-border">
+    <a class="btn btn-success btn-sm" [class.hidden]="show" (click)="create()"><span class="glyphicon glyphicon-plus"></span>创建</a>
+    <div class="box-tools">
+      <div class="input-group input-group-sm" style="width: 150px; margin-top:7px; ">
+        <!--<input [formControl]="nameFilter" type="text" name="table_search" class="form-control pull-right" placeholder="课程名称">-->
+
+        <!--<div class="input-group-btn">-->
+          <!--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>课程名称</th>
+        <th>星期</th>
+        <th>开始周</th>
+        <th>结束周</th>
+        <th>上课时间</th>
+        <th>上课地点</th>
+        <th>操作</th>
+      </tr>
+      <tr *ngFor="let course of courses; let i=index;">
+        <td>{{i+1}}</td>
+        <td>{{course.courseName}}</td>
+        <td>{{course.courseDay}}</td>
+        <td>{{course.courseStartWeek}}</td>
+        <td>{{course.courseEndWeek}}</td>
+        <td>{{course.courseTime|courseToTime}}</td>
+        <td>{{course.courseDes}}</td>
+        <td>
+          <a class="btn btn-danger btn-xs" (click)="remove(course)"><span class="glyphicon glyphicon-remove"></span>删除</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+      <li><a href="#">&laquo;</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">&raquo;</a></li>
+    </ul>
+  </div>
+</div>
+<div class="box">
+  <table class="table table-bordered" cellpadding=0 cellspacing=0 >
+    <caption  style="text-align:center">{{courseTeacherName}}个人课表</caption>
+    <tr>
+      <td colspan=2 style="background-color: #00b4ef">时间</td>
+      <td align="center" style="background-color: #00b4ef">星期一</td>
+      <td align="center" style="background-color: #00b4ef">星期二</td>
+      <td align="center" style="background-color: #00b4ef">星期三</td>
+      <td align="center" style="background-color: #00b4ef">星期四</td>
+      <td align="center" style="background-color: #00b4ef">星期五</td>
+      <td align="center" style="background-color: #00b4ef">星期六</td>
+      <td align="center" style="background-color: #00b4ef">星期日</td>
+    </tr>
+
+    <tr>
+      <td  rowspan=4  style="background-color: #00b4ef">上午</td>
+      <td  >第<br>1<br>节</td>
+      <td rowspan=2 align=center id="11"></td>
+      <td rowspan=2 align=center id="12"></td>
+      <td rowspan=2 align=center id="13"></td>
+      <td rowspan=2 align=center id="14"></td>
+      <td rowspan=2 align=center id="15"></td>
+      <td rowspan=2 align=center id="16"></td>
+      <td rowspan=2 align=center id="17"></td>
+    </tr>
+
+    <tr>
+      <td>第<br>2<br>节</td>
+    </tr>
+
+    <tr>
+      <td >第<br>3<br>节</td>
+      <td rowspan=2 align=center id="21"></td>
+      <td rowspan=2 align=center id="22"></td>
+      <td rowspan=2 align=center id="23"></td>
+      <td rowspan=2 align=center id="24"></td>
+      <td rowspan=2 align=center id="25"></td>
+      <td rowspan=2 align=center id="26"></td>
+      <td rowspan=2 align=center id="27"></td>
+    </tr>
+
+
+    <tr>
+      <td >第<br>4<br>节</td>
+    </tr>
+
+    <tr>
+      <td  rowspan=4 style="background-color: #00b4ef" >下午</td>
+      <td>第<br>5<br>节</td>
+      <td rowspan=2 align=center id="31"></td>
+      <td rowspan=2 align=center id="32"></td>
+      <td rowspan=2 align=center id="33"></td>
+      <td rowspan=2 align=center id="34"></td>
+      <td rowspan=2 align=center id="35"></td>
+      <td rowspan=2 align=center id="36"></td>
+      <td rowspan=2 align=center id="37"></td>
+    </tr>
+
+    <tr>
+      <td >第<br>6<br>节</td>
+    </tr>
+
+    <tr>
+      <td >第<br>7<br>节</td>
+      <td rowspan=2 align=center id="41"></td>
+      <td rowspan=2 align=center id="42"></td>
+      <td rowspan=2 align=center id="43"></td>
+      <td rowspan=2 align=center id="44"></td>
+      <td rowspan=2 align=center id="45"></td>
+      <td rowspan=2 align=center id="46"></td>
+      <td rowspan=2 align=center id="47"></td>
+    </tr>
+
+
+    <tr>
+      <td >第<br>8<br>节</td>
+    </tr>
+
+    <tr>
+      <td rowspan=2  style="background-color: #00b4ef">晚上</td>
+      <td >第<br>9<br>节</td>
+      <td rowspan=2 align=center id="51"></td>
+      <td rowspan=2 align=center id="52"></td>
+      <td rowspan=2 align=center id="53"></td>
+      <td rowspan=2 align=center id="54"></td>
+      <td rowspan=2 align=center id="55"></td>
+      <td rowspan=2 align=center id="56"></td>
+      <td rowspan=2 align=center id="57"></td>
+    </tr>
+
+    <tr>
+      <td >第<br>10<br>节</td>
+    </tr>
+  </table>
+</div>

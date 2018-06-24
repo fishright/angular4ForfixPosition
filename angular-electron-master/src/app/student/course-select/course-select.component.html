@@ -1,0 +1,54 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">学期选课</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>课程名称</th>
+        <th>星期</th>
+        <th>开始周</th>
+        <th>结束周</th>
+        <th>上课时间</th>
+        <th>上课地点</th>
+        <th>任课教师</th>
+        <th>操作</th>
+      </tr>
+      <tr *ngFor="let course of courses; let i=index;">
+        <td>{{i+1}}</td>
+        <td>{{course.courseName}}</td>
+        <td>{{course.courseDay}}</td>
+        <td>{{course.courseStartWeek}}</td>
+        <td>{{course.courseEndWeek}}</td>
+        <td>{{course.courseTime|courseToTime}}</td>
+        <td>{{course.courseDes}}</td>
+        <th>{{course.teacherName}}</th>
+        <td>
+          <a class="btn btn-default btn-xs" (click)="addCourseForMe(course)"><span class="glyphicon glyphicon-ok"></span>添加</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="box box-info">
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>课程名称</th>
+        <th>任课老师</th>
+        <th>签到次数</th>
+        <th>成绩</th>
+      </tr>
+      <tr *ngFor="let courseSelect of courseSelectList; let i=index;">
+        <td>{{i+1}}</td>
+        <td>{{courseSelect.courseName}}</td>
+        <td>{{courseSelect.teacherName}}</td>
+        <td>{{courseSelect.hasArrive}}</td>
+        <td>{{courseSelect.score}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

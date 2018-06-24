@@ -1,0 +1,57 @@
+<div class="box">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">课程搜索</h3>
+    </div>
+  <form [formGroup]="formModel" class="form-horizo ntal">
+    <div class="box-body">
+      <div class="form-group" [class.has-error]="formModel.get('courseId').touched&&formModel.hasError('required',['courseId'])">
+        <label class="col-sm-2 control-label">可选课程</label>
+        <div class="col-sm-8">
+          <select class="form-control" formControlName="courseId">
+            <option [value]=""></option>
+            <option *ngFor="let course of courses" [value]="course.courseId">{{course.courseName}}</option>
+          </select>
+        </div>
+        <span class="help-block" [class.hidden]="formModel.get('courseId').untouched||!formModel.hasError('required',['courseId'])">
+              课程必选
+        </span>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button  (click)="search()" [disabled]="formModel.invalid" type="button" class="btn btn-info pull-right">搜索</button>
+    </div>
+  </form>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>课程名称</th>
+        <th>学生学号</th>
+        <th>学生姓名</th>
+        <th>所在学院</th>
+        <th>签到次数</th>
+        <th>成绩</th>
+        <th>操作</th>
+      </tr>
+      <!--<tr *ngFor="let stock of stocks|stockFilter:'name':keyword; let i=index;">-->
+      <tr *ngFor="let courseSelect of courseSelectList; let i=index;">
+        <td>{{i+1}}</td>
+        <td>{{courseSelect.courseName}}</td>
+        <td>{{courseSelect.studentId}}</td>
+        <td>{{courseSelect.studentName}}</td>
+        <td>{{courseSelect.college|collegeToName}}</td>
+        <td>{{courseSelect.hasArrive}}</td>
+        <td>{{courseSelect.score}}</td>
+        <td>
+          <a class="btn btn-warning btn-xs" (click)="update(courseSelect)"><span class="glyphicon glyphicon-pencil"></span>成绩录入/修改</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- /.box -->
+

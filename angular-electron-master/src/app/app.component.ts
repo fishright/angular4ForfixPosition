@@ -1,3 +1,5 @@
+//  Created by xyx on 2018/5/23.
+//  Copyright © 2018年 谢鑫. All rights reserved.
 import { Component } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
 import { TranslateService } from '@ngx-translate/core';

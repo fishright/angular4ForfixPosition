@@ -1,0 +1,56 @@
+<div class="box">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">请假/旷课记录</h3>
+    </div>
+    <form [formGroup]="formModel" class="form-horizo ntal">
+      <div class="box-body">
+        <div class="form-group" [class.has-error]="formModel.get('arriveId').touched&&formModel.hasError('required',['arriveId'])">
+          <label class="col-sm-2 control-label">课程选择</label>
+          <div class="col-sm-10">
+            <select class="form-control" formControlName="arriveId">
+              <option [value]=""></option>
+              <option *ngFor="let arrive of arriveList" [value]="arrive.id">{{arrive.courseName}} 最早签到时间：{{arrive.earlyArrive}}
+              签到状态:{{arrive.status|fixCourseStatus}}</option>
+            </select>
+          </div>
+          <span class="help-block" [class.hidden]="formModel.get('arriveId').untouched||!formModel.hasError('required',['arriveId'])">
+              课程必选
+        </span>
+        </div>
+      </div>
+    </form>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <button  (click)="search()" [disabled]="formModel.invalid" type="button" class="btn btn-info pull-right">搜索</button>
+        <button  (click)="checkSeatNumber()" [disabled]="formModel.invalid" type="button"  class="btn btn-success pull-right">实时座位表查看</button>
+      </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>座位号</th>
+        <th>定位信息</th>
+        <th>移动端定位信息</th>
+        <th>课程状态</th>
+        <th>签到状态</th>
+      </tr>
+      <tr *ngFor="let studentArrive of studentArriveList; let i=index;">
+        <td>{{i+1}}</td>
+        <td>{{studentArrive.studentId}}</td>
+        <td>{{studentArrive.studentName}}</td>
+        <td>{{studentArrive.seatNumber}}</td>
+        <th>{{studentArrive.fixPosition}}</th>
+        <th>{{studentArrive.mobileFixPosition}}</th>
+        <td>{{studentArrive.status| courseStatus}}</td>
+        <td>{{studentArrive.arriveStatus| fixStatus}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- /.box -->
+

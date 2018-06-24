@@ -1,0 +1,38 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">课程签到表</h3>
+  </div>
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>课程名称</th>
+        <th>开课老师</th>
+        <th>定位信息</th>
+        <th>移动定位信息</th>
+        <th>座位号</th>
+        <th>最早签到时间</th>
+        <th>最迟签到时间</th>
+        <th>课程状态</th>
+        <th>签到状态</th>
+        <th>操作</th>
+      </tr>
+      <tr *ngFor="let studentArrive of studentArriveList; let i=index;">
+        <td>{{i+1}}</td>
+        <td>{{studentArrive.courseName}}</td>
+        <td>{{studentArrive.teacherName}}</td>
+        <td>{{studentArrive.fixPosition}}</td>
+        <td>{{studentArrive.mobileFixPosition}}</td>
+        <td>{{studentArrive.seatNumber}}</td>
+        <td>{{studentArrive.earlyArrive|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td>{{studentArrive.latelyArrive|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td>{{studentArrive.status| courseStatus}}</td>
+        <td>{{studentArrive.arriveStatus| fixStatus}}</td>
+        <td [class.hidden]="!((studentArrive.arriveStatus==='0'||studentArrive.arriveStatus===null))">
+          <a class="btn btn-warning btn-xs" (click)="fix(studentArrive)" ><span class="glyphicon glyphicon-heart"></span>签到</a>
+          <a class="btn btn-warning btn-xs" (click)="execute(studentArrive)" ><span class="glyphicon glyphicon-heart-empty"></span>请假</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

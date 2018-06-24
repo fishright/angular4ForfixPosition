@@ -1,0 +1,147 @@
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">课程信息</h3>
+  </div>
+  <!-- /.box-header -->
+  <!-- form start -->
+  <form [formGroup]="formModel" class="form-horizontal">
+    <div class="box-body">
+      <div class="form-group" [class.has-error]="formModel.get('courseName').touched&&(formModel.hasError('minlength',['courseName'])||formModel.hasError('required',['courseName']))">
+        <label for="courseName" class="col-sm-2 control-label">课程名称</label>
+
+        <div class="col-sm-6">
+          <input formControlName="courseName" type="text" class="form-control" id="courseName" placeholder="课程名称">
+        </div>
+        <span class="help-block" [class.hidden]="formModel.get('courseName').untouched||!formModel.hasError('required',['courseName'])">
+              课程名称必填
+        </span>
+        <span class="help-block" [class.hidden]="formModel.get('courseName').untouched||!formModel.hasError('minlength',['courseName'])">
+              请输入至少2个字
+        </span>
+      </div>
+      <div class="form-group" [class.has-error]="formModel.get('courseDay').touched&&formModel.hasError('required',['courseDay'])">
+        <label class="col-sm-2 control-label">星期</label>
+
+        <div class="col-sm-6">
+          <select class="form-control" formControlName="courseDay">
+            <option [value]></option>
+            <option [value]="1">1</option>
+            <option [value]="2">2</option>
+            <option [value]="3">3</option>
+            <option [value]="4">4</option>
+            <option [value]="5">5</option>
+            <option [value]="6">6</option>
+          </select>
+          <!--<input formControlName="courseTime" type="text" class="form-control" id="courseTimeDate" placeholder="课程时间">-->
+        </div>
+        <span class="help-block" [class.hidden]="formModel.get('courseDay').untouched||!formModel.hasError('required',['courseDay'])">
+              星期必填
+        </span>
+      </div>
+
+
+      <div formGroupName="courseWeekInfo" [class.has-error]="formModel.get('courseWeekInfo.courseStartWeek').touched&&formModel.hasError('required',['courseWeekInfo.courseWeekStart'])">
+        <div class="form-group">
+        <label class="col-sm-2 control-label">开始周</label>
+          <div class="col-sm-6">
+          <select class="form-control" formControlName="courseStartWeek">
+            <option [value]=""></option>
+            <option [value]="1">1</option>
+            <option [value]="2">2</option>
+            <option [value]="3">3</option>
+            <option [value]="4">4</option>
+            <option [value]="5">5</option>
+            <option [value]="6">6</option>
+            <option [value]="7">7</option>
+            <option [value]="8">8</option>
+            <option [value]="9">9</option>
+            <option [value]="10">10</option>
+            <option [value]="11">11</option>
+            <option [value]="12">12</option>
+            <option [value]="13">13</option>
+            <option [value]="14">14</option>
+            <option [value]="15">15</option>
+            <option [value]="16">16</option>
+            <option [value]="17">17</option>
+            <option [value]="18">18</option>
+            <option [value]="19">19</option>
+          </select>
+          </div>
+          <!--<input formControlName="courseTime" type="text" class="form-control" id="courseTimeDate" placeholder="课程时间">-->
+        <span class="help-block" [class.hidden]="formModel.get('courseWeekInfo.courseStartWeek').untouched||!formModel.hasError('required',['courseWeekInfo.courseStartWeek'])">
+              起始周必填
+        </span>
+        </div>
+
+
+        <div class="form-group">
+        <label class="col-sm-2 control-label">结束周</label>
+          <div class="col-sm-6">
+          <select class="form-control" formControlName="courseEndWeek">
+            <option [value]=""></option>
+            <option [value]="1">1</option>
+            <option [value]="2">2</option>
+            <option [value]="3">3</option>
+            <option [value]="4">4</option>
+            <option [value]="5">5</option>
+            <option [value]="6">6</option>
+            <option [value]="7">7</option>
+            <option [value]="8">8</option>
+            <option [value]="9">9</option>
+            <option [value]="10">10</option>
+            <option [value]="11">11</option>
+            <option [value]="12">12</option>
+            <option [value]="13">13</option>
+            <option [value]="14">14</option>
+            <option [value]="15">15</option>
+            <option [value]="16">16</option>
+            <option [value]="17">17</option>
+            <option [value]="18">18</option>
+            <option [value]="19">19</option>
+          </select>
+          </div>
+          <span class="help-block" [class.hidden]="formModel.get('courseWeekInfo.courseEndWeek').untouched||!formModel.hasError('required',['courseWeekInfo.courseEndWeek'])">
+              结束周必填
+          </span>
+        </div>
+          <span [hidden]="!formModel.hasError('courseStartWeek',['courseWeekInfo'])">
+             {{formModel.getError('courseStartWeek',['courseWeekInfo'])?.description}}
+          </span>
+      </div>
+
+      <div class="form-group" [class.has-error]="formModel.get('courseTime').touched&&formModel.hasError('required',['courseTime'])">
+        <label class="col-sm-2 control-label">上课时间</label>
+
+        <div class="col-sm-6">
+          <select class="form-control" formControlName="courseTime">
+            <option [value]="1">上午1-2节</option>
+            <option [value]="2">上午3-4节</option>
+            <option [value]="3">下午5-6节</option>
+            <option [value]="4">下午7-8节</option>
+            <option [value]="5">晚上9-10节</option>
+          </select>
+          <!--<input formControlName="courseTime" type="text" class="form-control" id="courseTimeDate" placeholder="课程时间">-->
+        </div>
+        <span class="help-block" [class.hidden]="formModel.get('courseTime').untouched||!formModel.hasError('required',['courseTime'])">
+              上课时间必填
+        </span>
+      </div>
+
+      <div class="form-group" [class.has-error]="formModel.get('courseDes').touched&&formModel.hasError('required',['courseDes'])">
+        <label class="col-sm-2 control-label">上课地点</label>
+        <div class="col-sm-6">
+          <input formControlName="courseDes" type="text" class="form-control"  placeholder="上课地点">
+        </div>
+        <span class="help-block" [class.hidden]="formModel.get('courseDes').untouched||!formModel.hasError('required',['courseDes'])">
+              上课地点
+        </span>
+      </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <button (click)="cancel()" type="button" class="btn btn-default">取消</button>
+      <button  (click)="save()" [disabled]="formModel.invalid" type="button" class="btn btn-info pull-right">保存</button>
+    </div>
+    <!-- /.box-footer -->
+  </form>
+</div>

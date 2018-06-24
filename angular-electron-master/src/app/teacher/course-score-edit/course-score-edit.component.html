@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" (click)="close()" >×</button>
+      <h4 class="modal-title">{{title}}</h4>
+    </div>
+    <form [formGroup]="formModel" class="form-horizontal">
+    <div class="modal-body">
+         <input formControlName="id"  type="text" class="form-control hidden" id="id" value="{{data.id}}">
+         <div class="form-group" [class.has-error]="formModel.get('score').touched&&(formModel.hasError('minlength',['score'])||formModel.hasError('required',['score']))">
+           <label for="score" class="col-sm-2 control-label">成绩</label>
+
+           <div class="col-sm-8">
+             <input formControlName="score" type="text" class="form-control" id="score" placeholder="请输入成绩" value="{{data.score}}">
+           </div>
+           <span class="help-block" [class.hidden]="formModel.get('score').untouched||!formModel.hasError('required',['score'])">
+              成绩必填
+           </span>
+         </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="close()">取消</button>
+      <button type="button" class="btn btn-default" (click)="submit()">确定</button>
+    </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <form class="form-horizontal" [formGroup]="formModel" (submit)="createUser()">
+        <span class="heading">用户注册</span>
+
+        <div class="form-group" [class.has-error]="formModel.get('email').touched&&formModel.hasError('email',['email'])">
+          <label class="col-sm-2 control-label">邮箱:</label>
+          <div class="col-sm-8">
+          <input class="form-control" formControlName="email" type="email" placeholder="用户名或电子邮件">
+          <span class="help-block" [class.hide]="formModel.get('email').untouched||!formModel.hasError('email',['email'])" >
+            邮箱格式不正确
+          </span>
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="formModel.get('mobile').touched&&formModel.hasError('mobile',['mobile'])">
+          <label class="col-sm-2 control-label">手机号:</label>
+          <div class="col-sm-8">
+          <input class="form-control" formControlName="mobile" type="number" placeholder="请输入手机号码">
+          <span  class="help-block" [class.hidden]="!formModel.get('mobile').pending">
+          正在校验手机合法性
+          </span>
+          <span class="help-block" [class.hidden]="formModel.get('mobile').untouched||!formModel.hasError('mobile',['mobile'])">
+            手机格式不正确
+          </span>
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="formModel.get('account').touched&&formModel.hasError('required',['account'])">
+          <label class="col-sm-2 control-label">学号/职工号：</label>
+          <div class="col-sm-8">
+          <input class="form-control" formControlName="account" type="number" placeholder="学生请输入学生号/教师请输入职工号">
+          <span class="help-block" [class.hidden]="formModel.get('account').untouched||!formModel.hasError('required',['account'])"></span>
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="formModel.get('name').touched&&formModel.hasError('required',['name'])">
+          <label class="col-sm-2 control-label">姓名：</label>
+          <div class="col-sm-8">
+          <input class="form-control" formControlName="name" type="text" placeholder="请输入姓名">
+          <span class="help-block" [class.hidden]="formModel.get('name').untouched||!formModel.hasError('required',['name'])"></span>
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="formModel.get('username').touched&&formModel.hasError('required',['username'])">
+          <label class="col-sm-2 control-label">用户名：</label>
+          <div class="col-sm-8">
+            <input class="form-control" formControlName="username" type="text" placeholder="请输入用户名">
+            <span class="help-block" [class.hidden]="formModel.get('username').untouched||!formModel.hasError('required',['username'])"></span>
+          </div>
+        </div>
+
+
+
+        <div formGroupName="passwordInfo" [class.has-error]="formModel.get('passwordInfo.password').touched&&formModel.hasError('required',['passwordInfo.password'])">
+          <div class="form-group">
+          <label class="col-sm-2 control-label">密码：</label>
+          <div class="col-sm-8">
+            <input class="form-control" formControlName="password" type="password" placeholder="请输入密码">
+            <span class="help-block" [class.hidden]="!formModel.hasError('required',['passwordInfo.password'])"></span>
+          </div>
+          </div>
+          <div class="form-group">
+          <label class="col-sm-2 control-label">确认密码：</label>
+          <div class="col-sm-8">
+            <input class="form-control" formControlName="passwordConfirm" type="password" placeholder="请再次输入密码">
+            <span [hidden]="!formModel.hasError('password',['passwordInfo'])" >
+            {{formModel.getError('password',['passwordInfo'])?.description}}
+            </span>
+          </div>
+          </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="formModel.get('role').touched&&formModel.hasError('required',['role'])">
+          <label class="col-sm-2 control-label">身份:</label>
+          <div class="col-sm-8">
+          <select class="form-control" formControlName="role">
+            <option [value]=""></option>
+            <option [value]="1">学生</option>
+            <option [value]="2">老师</option>
+          </select>
+            <span class="help-block" [class.hidden]="formModel.get('role').untouched||!formModel.hasError('required',['role'])">
+              请选择身份
+            </span>
+          </div>
+        </div>
+        <div class="form-group" [class.has-error]="formModel.get('college').touched&&formModel.hasError('required',['college'])">
+          <label class="col-sm-2 control-label">学院:</label>
+          <div class="col-sm-8">
+            <select class="form-control" formControlName="college">
+              <option [value]=""></option>
+              <option [value]="1">海洋学院</option>
+              <option [value]="2">数学与计算机科学学院</option>
+              <option [value]="3">物理与信息工程学院</option>
+              <option [value]="4">经济与管理学院</option>
+              <option [value]="5">人文与社会科学学院</option>
+              <option [value]="6">石油与化工学院</option>
+              <option [value]="7">厦门工艺美院</option>
+              <option [value]="8">机械及其自动化学院</option>
+              <option [value]="9">电气工程及其自动化学院</option>
+            </select>
+            <span class="help-block" [class.hidden]="formModel.get('college').untouched||!formModel.hasError('required',['college'])">
+              请选择身份
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default"><a>提交</a></button>
+          <button type="button" class="btn btn-success"><a (click)="cancel()">返回</a></button>
+        </div>
+      </form>
+  </div>
+</div>
+</div>

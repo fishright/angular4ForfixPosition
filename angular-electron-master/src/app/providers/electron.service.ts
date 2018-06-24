@@ -1,5 +1,6 @@
+//  Created by xyx on 2018/6/14.
+//  Copyright © 2018年 谢鑫. All rights reserved.
 import { Injectable } from '@angular/core';
-
 // If you import a module but never use any of the imported values other than as TypeScript types,
 // the resulting javascript file will look as if you never imported the module at all.
 import { ipcRenderer } from 'electron';
